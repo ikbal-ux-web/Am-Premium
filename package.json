@@ -1,0 +1,13 @@
+{
+  "name": "alightmotion-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Alight Motion Premium Generator + REST API (Vercel)",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
