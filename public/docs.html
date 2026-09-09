@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="id" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Docs — Alight Motion Premium</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#020617',
+                        panelBg: '#090d16',
+                        softBlue: '#3b82f6',
+                        deepBlue: '#1d4ed8'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/docs.css">
+</head>
+<body>
+    <div class="bg-glow-1"></div>
+    <div class="bg-glow-2"></div>
+
+    <nav class="nav">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-full overflow-hidden border border-blue-500/30 bg-slate-900">
+                    <img src="https://d.top4top.io/p_3866f3zva1.jpg" alt="Logo" class="w-full h-full object-cover"
+                         onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=100&auto=format&fit=crop&q=60';">
+                </div>
+                <div>
+                    <div class="text-sm font-bold text-white tracking-wide">Alight Motion</div>
+                    <div class="text-[10px] text-slate-500 uppercase tracking-widest">API Documentation</div>
+                </div>
+            </div>
+            <div class="flex items-center gap-5">
+                <a href="/" class="nav-link">Generator</a>
+                <a href="/docs" class="nav-link active">Docs</a>
+                <a href="https://t.me/t_xxsb" target="_blank" class="nav-link flex items-center gap-1.5">
+                    <i class="fa-brands fa-telegram"></i> Channel
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 py-10 space-y-10 relative z-10">
+
+        <section class="space-y-3">
+            <h1 class="text-2xl sm:text-3xl font-black text-white tracking-tight">REST API Reference</h1>
+            <p class="text-sm text-slate-400 leading-relaxed max-w-2xl">
+                Base URL: <code class="text-softBlue font-mono text-xs">https://alightmotion.qsr.web.id</code><br>
+                Gunakan endpoint di bawah untuk mengintegrasikan generator Alight Motion Premium ke aplikasi atau bot Anda.
+            </p>
+            <div class="flex flex-wrap gap-2 pt-1">
+                <span class="badge" style="background:rgba(59,130,246,0.12);color:#60a5fa;">CORS Enabled</span>
+                <span class="badge" style="background:rgba(34,197,94,0.12);color:#4ade80;">GET only</span>
+                <span class="badge" style="background:rgba(168,85,247,0.12);color:#c084fc;">JSON Response</span>
+            </div>
+        </section>
+
+        <section class="endpoint-card space-y-3">
+            <h2 class="text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
+                <i class="fa-solid fa-unlock text-softBlue"></i> No Authentication Required
+            </h2>
+            <p class="text-xs text-slate-400 leading-relaxed">
+                API ini <strong class="text-green-400">tidak memerlukan API key</strong>. Cukup panggil endpoint dengan parameter yang diperlukan.
+            </p>
+        </section>
+
+        <section class="endpoint-card space-y-5">
+            <div class="flex flex-wrap items-center gap-3">
+                <span class="method-get">GET</span>
+                <code class="text-sm text-white font-mono">/api/email-prem</code>
+            </div>
+            <p class="text-xs text-slate-400">Kirim permintaan email verifikasi ke alamat target. Setelah berhasil, user harus membuka email dan menyalin URL verifikasi.</p>
+
+            <div>
+                <h3 class="text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Query Parameters</h3>
+                <table class="w-full param-table text-left">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Required</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="font-mono text-blue-300">email</td>
+                            <td>string</td>
+                            <td><span class="badge badge-required">required</span></td>
+                            <td>Alamat email target yang akan diaktifkan</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div>
+                <div class="flex items-center justify-between mb-2">
+                    <h3 class="text-xs font-bold text-slate-300 uppercase tracking-wider">Example Request</h3>
+                    <button class="copy-btn" onclick="copyCode('ex1')">
+                        <i class="fa-regular fa-copy"></i> Copy
+                    </button>
+                </div>
+                <pre id="ex1" class="code-block">curl -X GET "https://alightmotion.qsr.web.id/api/email-prem?email=user@example.com"</pre>
+            </div>
+
+            <div>
+                <h3 class="text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Success Response (200)</h3>
+                <pre class="code-block">{
+  "status": true,
+  "code": 200,
+  "success": true,
+  "message": "Permintaan berhasil diproses. Masukkan URL verifikasi.",
+  "email": "user@example.com",
+  "data": null
+}</pre>
+            </div>
+
+            <div>
+                <h3 class="text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Error Response</h3>
+                <pre class="code-block">{
+  "status": false,
+  "code": 400,
+  "message": "Parameter \"email\" is required."
+}</pre>
+            </div>
+        </section>
+
+        <section class="endpoint-card space-y-5">
+            <div class="flex flex-wrap items-center gap-3">
+                <span class="method-get">GET</span>
+                <code class="text-sm text-white font-mono">/api/vertif-prem</code>
+            </div>
+            <p class="text-xs text-slate-400">Aktivasi premium menggunakan URL verifikasi yang didapat dari email.</p>
+
+            <div>
+                <h3 class="text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Query Parameters</h3>
+                <table class="w-full param-table text-left">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Required</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="font-mono text-blue-300">email</td>
+                            <td>string</td>
+                            <td><span class="badge badge-required">required</span></td>
+                            <td>Email yang dipakai saat memanggil /api/email-prem</td>
+                        </tr>
+                        <tr>
+                            <td class="font-mono text-blue-300">link</td>
+                            <td>string</td>
+                            <td><span class="badge badge-required">required</span></td>
+                            <td>URL / tautan verifikasi dari email (alias: <code>url</code>)</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div>
+                <div class="flex items-center justify-between mb-2">
+                    <h3 class="text-xs font-bold text-slate-300 uppercase tracking-wider">Example Request</h3>
+                    <button class="copy-btn" onclick="copyCode('ex2')">
+                        <i class="fa-regular fa-copy"></i> Copy
+                    </button>
+                </div>
+                <pre id="ex2" class="code-block">curl -X GET "https://alightmotion.qsr.web.id/api/vertif-prem?email=user%40example.com&link=https%3A%2F%2Fexample.com%2Fverify%2Fxxx"</pre>
+            </div>
+
+            <div>
+                <h3 class="text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Success Response (200)</h3>
+                <pre class="code-block">{
+  "status": true,
+  "code": 200,
+  "success": true,
+  "message": "Verifikasi berhasil. Premium aktif.",
+  "data": {
+    "success": true,
+    "user": { "...": "..." },
+    "idToken": "...",
+    "premium": { "...": "..." }
+  }
+}</pre>
+            </div>
+
+            <div>
+                <h3 class="text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Error Response</h3>
+                <pre class="code-block">{
+  "status": false,
+  "code": 400,
+  "message": "Parameter \"email\" dan \"link\" (atau \"url\") wajib diisi."
+}</pre>
+            </div>
+        </section>
+
+        <section class="endpoint-card space-y-4">
+            <h2 class="text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
+                <i class="fa-solid fa-diagram-project text-softBlue"></i> Alur Penggunaan
+            </h2>
+            <ol class="space-y-3 text-xs text-slate-300 leading-relaxed list-decimal list-inside">
+                <li>Panggil <code class="text-blue-300">/api/email-prem</code> dengan email target.</li>
+                <li>User membuka kotak masuk / spam email dan menyalin link verifikasi.</li>
+                <li>Panggil <code class="text-blue-300">/api/vertif-prem</code> dengan URL tersebut.</li>
+                <li>Jika berhasil, akun akan berstatus premium.</li>
+            </ol>
+        </section>
+
+        <section class="endpoint-card space-y-4">
+            <div class="flex items-center justify-between">
+                <h2 class="text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
+                    <i class="fa-brands fa-js text-yellow-400"></i> Contoh JavaScript (fetch)
+                </h2>
+                <button class="copy-btn" onclick="copyCode('ex-js')">
+                    <i class="fa-regular fa-copy"></i> Copy
+                </button>
+            </div>
+            <pre id="ex-js" class="code-block">const BASE = "https://alightmotion.qsr.web.id";
+
+const emailRes = await fetch(
+  `${BASE}/api/email-prem?email=${encodeURIComponent("user@example.com")}`
+);
+const emailData = await emailRes.json();
+console.log(emailData);
+
+const verifyRes = await fetch(
+  `${BASE}/api/vertif-prem?email=${encodeURIComponent("user@example.com")}&link=${encodeURIComponent(verifyUrl)}`
+);
+const verifyData = await verifyRes.json();
+console.log(verifyData);</pre>
+        </section>
+
+        <footer class="pt-6 pb-10 border-t border-slate-800/60 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-slate-500">
+            <span>&copy; 2026 Alight Motion Creator Portal</span>
+            <span class="flex items-center gap-1.5">
+                <i class="fa-solid fa-lock text-[10px]"></i> Secure Encrypted Connection
+            </span>
+        </footer>
+    </main>
+
+    <script src="/js/docs.js"></script>
+</body>
+</html>

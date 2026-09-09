@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="id" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Alight Motion Premium</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#020617',
+                        panelBg: '#090d16',
+                        softBlue: '#3b82f6',
+                        deepBlue: '#1d4ed8'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/index.css">
+</head>
+<body>
+
+    <div class="bg-glow-1"></div>
+    <div class="bg-glow-2"></div>
+
+    <div id="joinModal" class="fixed inset-0 bg-slate-950/95 z-50 flex items-center justify-center p-4 backdrop-blur-md modal-overlay">
+        <div class="w-full max-w-md modal-box p-6 sm:p-8 text-center space-y-6 border border-softBlue/20">
+            <div class="w-16 h-16 bg-softBlue/15 text-softBlue rounded-full flex items-center justify-center mx-auto text-2xl border border-softBlue/30">
+                <i class="fa-brands fa-telegram"></i>
+            </div>
+            <div>
+                <h2 class="text-lg font-black text-white uppercase tracking-wide">Informasi Pembaruan</h2>
+                <p class="text-xs text-slate-400 mt-2 leading-relaxed">Silakan bergabung terlebih dahulu ke channel resmi kami di Telegram untuk mendapatkan informasi update dan akses alat generator terbaru.</p>
+            </div>
+            <div class="space-y-3">
+                <a href="https://t.me/Information_Kazu" target="_blank" class="w-full bg-gradient-to-r from-softBlue to-deepBlue hover:from-blue-500 hover:to-blue-700 text-white font-bold py-3.5 px-4 rounded-xl btn-3d flex items-center justify-center gap-2 text-xs tracking-wide uppercase">
+                    <i class="fa-brands fa-telegram text-base"></i> Gabung Channel Telegram
+                </a>
+                <button type="button" id="btnAlreadyJoined" class="w-full bg-slate-900/60 hover:bg-slate-800 text-slate-300 font-bold py-3.5 px-4 rounded-xl transition-all text-xs uppercase tracking-wide border border-white/5">
+                    Sudah Bergabung
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="tutorialModal" class="fixed inset-0 bg-slate-950/95 z-50 flex items-center justify-center p-4 backdrop-blur-md modal-overlay opacity-0 pointer-events-none transition-all duration-300">
+        <div class="w-full max-w-lg modal-box p-6 sm:p-8 space-y-5 border border-softBlue/20 relative max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between pb-3 border-b">
+                <h2 class="text-sm font-black text-white uppercase tracking-wider flex items-center gap-2">
+                    <i class="fa-solid fa-circle-info text-softBlue"></i> Panduan Penggunaan
+                </h2>
+                <button type="button" id="btnCloseTutorial" class="text-slate-400 hover:text-white p-2">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            <div class="space-y-3 text-xs text-slate-300 leading-relaxed">
+                <div class="flex gap-3 items-start bg-slate-900/40 p-3 rounded-xl border border-white/5">
+                    <span class="w-6 h-6 rounded-full bg-softBlue text-slate-950 flex items-center justify-center text-xs font-black shrink-0">1</span>
+                    <div>
+                        <span class="font-bold text-white block mb-0.5 uppercase text-[11px]">Masukkan Email Akun</span>
+                        <span>Ketik alamat email target yang ingin diaktifkan pada kolom Tahap 1, lalu klik tombol kirim permintaan.</span>
+                    </div>
+                </div>
+                <div class="flex gap-3 items-start bg-slate-900/40 p-3 rounded-xl border border-white/5">
+                    <span class="w-6 h-6 rounded-full bg-softBlue text-slate-950 flex items-center justify-center text-xs font-black shrink-0">2</span>
+                    <div>
+                        <span class="font-bold text-white block mb-0.5 uppercase text-[11px]">Buka Kotak Masuk Email</span>
+                        <span>Cek pesan masuk atau folder spam pada email yang kamu daftarkan untuk melihat email verifikasi yang dikirimkan sistem.</span>
+                    </div>
+                </div>
+                <div class="flex gap-3 items-start bg-slate-900/40 p-3 rounded-xl border border-white/5">
+                    <span class="w-6 h-6 rounded-full bg-softBlue text-slate-950 flex items-center justify-center text-xs font-black shrink-0">3</span>
+                    <div>
+                        <span class="font-bold text-white block mb-0.5 uppercase text-[11px]">Salin Link Tautan</span>
+                        <span>Salin URL atau tautan verifikasi yang ada di dalam isi pesan email tersebut.</span>
+                    </div>
+                </div>
+                <div class="flex gap-3 items-start bg-slate-900/40 p-3 rounded-xl border border-white/5">
+                    <span class="w-6 h-6 rounded-full bg-softBlue text-slate-950 flex items-center justify-center text-xs font-black shrink-0">4</span>
+                    <div>
+                        <span class="font-bold text-white block mb-0.5 uppercase text-[11px]">Tempel dan Aktivasi</span>
+                        <span>Masukkan link tautan yang disalin ke kolom Tahap 2 pada aplikasi ini, lalu klik aktivasi premium untuk menyelesaikan proses.</span>
+                    </div>
+                </div>
+            </div>
+            <button type="button" id="btnGotIt" class="w-full bg-slate-800/80 hover:bg-slate-700 text-white font-bold py-3 px-4 rounded-xl transition-all text-xs uppercase tracking-wider border border-white/5">
+                Mengerti & Mulai
+            </button>
+        </div>
+    </div>
+
+    <div id="waterLoadingOverlay" class="fixed inset-0 bg-slate-950/95 z-50 flex flex-col items-center justify-center transition-all duration-500 opacity-0 pointer-events-none backdrop-blur-md">
+        <div class="relative w-40 h-40 rounded-full border border-softBlue/40 flex items-center justify-center overflow-hidden shadow-2xl bg-slate-900 shadow-softBlue/30">
+            <div class="water-wave-2"></div>
+            <div class="water-wave-1"></div>
+            <div class="relative z-10 text-softBlue text-4xl drop-shadow-[0_0_15px_rgba(59,130,246,0.9)]">
+                <i class="fa-solid fa-spinner fa-spin"></i>
+            </div>
+        </div>
+        <p id="waterLoadingText" class="mt-6 text-xs font-bold text-softBlue tracking-[0.2em] uppercase">Menghubungkan Server...</p>
+    </div>
+
+    <div class="main-container">
+
+        <header class="header">
+            <div class="header-left">
+                <div class="header-logo">
+                    <img src="https://files.catbox.moe/nqqn14.jpg" alt="Logo" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=100&auto=format&fit=crop&q=60';">
+                </div>
+                <div>
+                    <div class="header-title">Alight Motion</div>
+                    <div class="header-sub">Kazuha Store</div>
+                </div>
+            </div>
+            <div class="header-right">
+                <a href="/docs" class="header-btn" style="text-decoration:none;">
+                    <i class="fa-solid fa-book"></i> Docs
+                </a>
+                <button type="button" id="btnOpenTutorial" class="header-btn">
+                    <i class="fa-solid fa-circle-info"></i> Info
+                </button>
+                <span class="header-badge"><span class="dot"></span>API Active</span>
+            </div>
+        </header>
+
+
+        <div class="content-area">
+
+            <div class="title-area">
+                <h1 class="main-title">GENERATE <span>ALIGHT MOTION</span></h1>
+                <p class="main-sub">Sistem Pemrosesan Akun Otomatis</p>
+            </div>
+
+            <div class="step-indicator" id="stepIndicator">
+                <div id="badgeStep1" class="step-item active">
+                    <span class="step-num">1</span>
+                    <span>Email Akun</span>
+                </div>
+                <div id="badgeStep2" class="step-item inactive">
+                    <span class="step-num">2</span>
+                    <span>URL Verifikasi</span>
+                </div>
+            </div>
+
+
+            <div id="alertBox" class="alert">
+                <i id="alertIcon"></i>
+                <div>
+                    <span id="alertTitle" class="alert-title"></span>
+                    <span id="alertMessage" class="alert-msg"></span>
+                </div>
+            </div>
+
+            <div id="step1Container" class="w-full flex flex-col items-center gap-3">
+                <form id="emailForm" class="w-full flex flex-col items-center gap-3">
+                    <div class="form-group">
+                        <label for="emailInput" class="form-label">Alamat Email Target</label>
+                        <div class="input-wrap">
+                            <span class="input-icon"><i class="fa-solid fa-envelope"></i></span>
+                            <input type="email" id="emailInput" required placeholder="nama@domain.com" class="form-input">
+                        </div>
+                    </div>
+                    <button type="submit" id="btnSubmitEmail" class="btn-primary">
+                        <span id="btnEmailText">Kirim Permintaan Email</span>
+                        <i id="btnEmailIcon" class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </form>
+            </div>
+
+            <div id="step2Container" class="hidden w-full flex flex-col items-center gap-3">
+                <div class="target-box">
+                    <span class="target-box-label">Target Email</span>
+                    <span id="displayEmail" class="target-box-email"></span>
+                </div>
+                <form id="verifyForm" class="w-full flex flex-col items-center gap-3">
+                    <div class="form-group">
+                        <label for="urlInput" class="form-label">URL Verifikasi</label>
+                        <div class="input-wrap">
+                            <span class="input-icon"><i class="fa-solid fa-link"></i></span>
+                            <input type="url" id="urlInput" required placeholder="https://..." class="form-input font-mono">
+                        </div>
+                    </div>
+                    <button type="submit" id="btnSubmitVerify" class="btn-primary">
+                        <span id="btnVerifyText">Aktivasi Premium</span>
+                        <i id="btnVerifyIcon" class="fa-solid fa-shield-halved"></i>
+                    </button>
+                </form>
+                <button type="button" id="btnBack" class="btn-secondary">
+                    <i class="fa-solid fa-arrow-left"></i> Gunakan Email Lain
+                </button>
+            </div>
+
+            <!-- STEP 3: RESULT -->
+            <div id="resultContainer" class="hidden w-full flex flex-col items-center gap-3">
+                <div class="result-box">
+                    <div class="result-icon">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+                    <div>
+                        <div class="result-title">Aktivasi Berhasil</div>
+                        <p class="result-sub">Akun kamu telah berhasil diverifikasi dan berstatus premium.</p>
+                    </div>
+                    <div class="result-email-box">
+                        <div class="result-email-label">Akun Terverifikasi</div>
+                        <div class="result-email-value" id="resEmail"></div>
+                        <div class="result-status">
+                            <i class="fa-solid fa-check-double"></i> Unlocked Permanent
+                        </div>
+                    </div>
+                    <button type="button" id="btnReset" class="btn-reset">
+                        <i class="fa-solid fa-rotate-right"></i> Buat Akun Lain
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <footer class="footer">
+            <span class="footer-copy">&copy; 2026 Kazuha. All rights reserved.</span>
+            <span class="footer-secure"><i class="fa-solid fa-lock"></i> Secure Encrypted Connection</span>
+        </footer>
+
+    </div>
+
+    <script src="/js/index.js"></script>
+</body>
+</html>
